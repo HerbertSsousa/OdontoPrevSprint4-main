@@ -15,9 +15,16 @@
             <h2 class="mb-3">Sinistros Inteligentes</h2>
             <p class="text-muted">Detecte e mitigue fraudes e sinistros no setor odontológico com análise preditiva.</p>
         </div>
+
+        <!-- ALERTA DE ERRO -->
+        <div th:if="${param.error}" class="alert alert-danger text-center" role="alert">
+            CPF ou senha inválidos. Tente novamente.
+        </div>
+
+        <!-- FORMULÁRIO DE LOGIN -->
         <form action="/login" method="post">
             <div class="mb-3">
-                <label for="nome" class="form-label">Nome de Usuário</label>
+                <label for="nome" class="form-label">CPF</label>
                 <input type="text" class="form-control" id="nome" name="nome" required>
             </div>
             <div class="mb-3">
@@ -26,6 +33,7 @@
             </div>
             <button type="submit" class="btn btn-primary w-100">Entrar</button>
         </form>
+
         <div class="text-center mt-3">
             <p class="mb-1">Não tem uma conta?</p>
             <a href="/usuarios/form" class="btn btn-outline-secondary w-100">Cadastrar Novo Usuário</a>

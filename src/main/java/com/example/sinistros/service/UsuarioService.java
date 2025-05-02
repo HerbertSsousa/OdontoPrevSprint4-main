@@ -1,4 +1,3 @@
-// UsuarioService.java
 package com.example.sinistros.service;
 
 import com.example.sinistros.dto.UsuarioDTO;
@@ -6,6 +5,7 @@ import com.example.sinistros.model.Usuario;
 import com.example.sinistros.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -21,6 +21,9 @@ public class UsuarioService {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public List<UsuarioDTO> listarUsuarios() {
         return usuarioRepository.findAll().stream()
@@ -38,7 +41,7 @@ public class UsuarioService {
         usuario.setIdUser(nextId);
         usuario.setNome(usuarioDTO.getNome());
         usuario.setCpf(usuarioDTO.getCpf());
-        usuario.setSenha(usuarioDTO.getSenha());
+        usuario.setSenha(passwordEncoder.encode(usuarioDTO.getSenha())); // 🔒 criptografia
         usuario.setDataCriacao(LocalDate.now());
 
         Usuario salvo = usuarioRepository.save(usuario);
@@ -50,7 +53,7 @@ public class UsuarioService {
                 .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado"));
         usuario.setNome(dto.getNome());
         usuario.setCpf(dto.getCpf());
-        usuario.setSenha(dto.getSenha());
+        usuario.setSenha(passwordEncoder.encode(dto.getSenha())); // 🔒 criptografia
         usuario.setDataCriacao(LocalDate.now());
         return converterParaDTO(usuarioRepository.save(usuario));
     }

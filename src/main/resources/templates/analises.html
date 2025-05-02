@@ -1,8 +1,9 @@
+<!-- analises.html atualizado com i18n -->
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Análise Preditiva - OdontoPrev</title>
+    <title th:text="#{home.title}">Análise Preditiva</title>
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
@@ -22,25 +23,26 @@
 <div class="container mt-5 mb-5">
     <div class="text-center mb-4">
         <img src="/img/odontoprev.png" alt="Logo OdontoPrev" class="mb-3" style="max-width: 180px;">
-        <h1 class="section-title">Análise Preditiva de Sinistros</h1>
-        <p class="text-muted">Inovação na prevenção de fraudes e no monitoramento de riscos odontológicos.</p>
+        <h1 class="section-title" th:text="#{home.title}">Análise</h1>
+        <p class="text-muted" th:text="#{home.subtitle}">Subtítulo</p>
     </div>
 
     <div class="info-box">
-        <h4 class="section-title">📊 O que é a Análise Preditiva?</h4>
-        <p>A análise preditiva da OdontoPrev é uma solução inteligente que utiliza algoritmos estatísticos e aprendizado de máquina para prever a ocorrência de sinistros odontológicos com base em dados históricos e variáveis comportamentais.</p>
+        <h4 class="section-title" th:text="#{home.box1.title}">📊 Título</h4>
+        <p th:text="#{home.box1.desc}">Descrição</p>
     </div>
 
     <div class="info-box">
-        <h4 class="section-title">⚙️ Como funciona?</h4>
+        <h4 class="section-title" th:text="#{home.box2.title}">⚙️ Como funciona?</h4>
         <ul>
-            <li>Recebemos os dados clínicos e históricos dos pacientes.</li>
-            <li>A imagem da radiografia ou outro exame é processada por nosso sistema de inteligência artificial.</li>
-            <li>O algoritmo avalia a aptidão do paciente, possíveis anomalias e padrões recorrentes.</li>
-            <li>Com base nisso, é gerado um laudo com:
+            <li th:text="#{home.box2.step1}">Passo 1</li>
+            <li th:text="#{home.box2.step2}">Passo 2</li>
+            <li th:text="#{home.box2.step3}">Passo 3</li>
+            <li th:text="#{home.box2.step4}">Passo 4</li>
+            <li>
                 <ul>
                     <li><strong>Resultado da análise:</strong> Apto / Inapto</li>
-                    <li><strong>Frequência estimada de sinistros:</strong> projeção numérica baseada em histórico</li>
+                    <li><strong th:text="#{home.result}">Frequência de Sinistros:</strong> Projeção</li>
                 </ul>
             </li>
         </ul>
@@ -57,7 +59,7 @@
     </div>
 
     <div class="text-center my-5">
-        <h3 class="section-title">📁 Resultados Recentes</h3>
+        <h3 class="section-title" th:text="#{home.result.title}">📁 Resultados Recentes</h3>
     </div>
 
     <div class="table-responsive">
@@ -66,7 +68,7 @@
             <tr>
                 <th>ID</th>
                 <th>Resultado</th>
-                <th>Frequência de Sinistros</th>
+                <th th:text="#{home.result}">Frequência de Sinistros</th>
                 <th>Data da Análise</th>
                 <th>ID da Foto</th>
             </tr>
@@ -112,7 +114,7 @@
     </div>
 
     <div class="text-center mt-4">
-        <a href="/" class="btn btn-outline-primary">Voltar ao Início</a>
+        <a href="/" class="btn btn-outline-primary" th:text="#{home.back}">Voltar ao Início</a>
     </div>
 </div>
 </body>

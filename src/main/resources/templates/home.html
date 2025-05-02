@@ -1,9 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Sinistros Inteligentes</title>
+    <title th:text="#{login.title}">Login</title>
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
@@ -12,32 +12,30 @@
     <div class="card p-4 shadow-lg" style="max-width: 400px; width: 100%;">
         <div class="text-center">
             <img src="/img/odontoprev.png" alt="Logo OdontoPrev" class="img-fluid mb-3" style="max-width: 150px;">
-            <h2 class="mb-3">Sinistros Inteligentes</h2>
-            <p class="text-muted">Detecte e mitigue fraudes e sinistros no setor odontológico com análise preditiva.</p>
+            <h2 class="mb-3" th:text="#{login.title}">Login</h2>
+            <p class="text-muted" th:text="#{login.subtitle}">Detecte fraudes</p>
         </div>
 
-        <!-- ALERTA DE ERRO -->
-        <div th:if="${param.error}" class="alert alert-danger text-center" role="alert">
-            CPF ou senha inválidos. Tente novamente.
+        <div th:if="${param.error}" class="alert alert-danger text-center" role="alert" th:text="#{login.error}">
+            Erro
         </div>
 
-        <!-- FORMULÁRIO DE LOGIN -->
         <form action="/login" method="post">
             <div class="mb-3">
-                <label for="nome" class="form-label">CPF</label>
+                <label for="nome" class="form-label" th:text="#{login.cpf}">CPF</label>
                 <input type="text" class="form-control" id="nome" name="nome" required>
             </div>
             <div class="mb-3">
-                <label for="password" class="form-label">Senha</label>
+                <label for="password" class="form-label" th:text="#{login.password}">Senha</label>
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Entrar</button>
+            <button type="submit" class="btn btn-primary w-100" th:text="#{login.button}">Entrar</button>
         </form>
 
         <div class="text-center mt-3">
-            <p class="mb-1">Não tem uma conta?</p>
-            <a href="/usuarios/form" class="btn btn-outline-secondary w-100">Cadastrar Novo Usuário</a>
-            <a href="/funcionarios/form" class="btn btn-outline-secondary w-100 mt-2">Cadastrar Novo Funcionário</a>
+            <p class="mb-1" th:text="#{login.noaccount}">Não tem uma conta?</p>
+            <a href="/usuarios/form" class="btn btn-outline-secondary w-100" th:text="#{login.register.user}">Cadastrar</a>
+            <a href="/funcionarios/form" class="btn btn-outline-secondary w-100 mt-2" th:text="#{login.register.func}">Cadastrar</a>
         </div>
     </div>
 </div>

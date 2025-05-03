@@ -16,24 +16,21 @@ public class FotoService {
     @Autowired
     private FotoRepository fotoRepository;
 
-    // Método para converter Foto para FotoDTO
     private FotoDTO converterParaDTO(Foto foto) {
         return new FotoDTO(
                 foto.getIdFotos(),
                 foto.getCaminhoFoto(),
                 foto.getDataEnvio(),
-                foto.getUsuario() != null ? foto.getUsuario().getIdUser() : null // Supondo que a entidade Usuario tem o método getIdUsuario()
+                foto.getUsuario() != null ? foto.getUsuario().getIdUser() : null // Retorna Integer, compatível com DTO
         );
     }
 
-    // Método para converter FotoDTO para Foto
     private Foto converterParaEntidade(FotoDTO fotoDTO) {
         Foto foto = new Foto();
         foto.setIdFotos(fotoDTO.getIdFotos());
         foto.setCaminhoFoto(fotoDTO.getCaminhoFoto());
         foto.setDataEnvio(fotoDTO.getDataEnvio());
-        // Aqui, você pode buscar o usuário no banco de dados usando o usuarioId
-        // Se você tem um serviço de Usuário, pode ser utilizado para recuperar o objeto Usuário
+        // Aqui você pode adicionar a associação com Usuario se necessário
         return foto;
     }
 
@@ -45,7 +42,8 @@ public class FotoService {
     }
 
     public Optional<FotoDTO> buscarFotoPorId(Integer id) {
-        return fotoRepository.findById(id).map(this::converterParaDTO);
+        return fotoRepository.findById(id.longValue()) // Convertido para Long
+                .map(this::converterParaDTO);
     }
 
     public FotoDTO criarFoto(FotoDTO fotoDTO) {
@@ -62,6 +60,6 @@ public class FotoService {
     }
 
     public void deletarFoto(Integer id) {
-        fotoRepository.deleteById(id);
+        fotoRepository.deleteById(id.longValue()); // Convertido para Long
     }
 }

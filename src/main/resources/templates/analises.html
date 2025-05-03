@@ -1,4 +1,4 @@
-<!-- analises.html atualizado com i18n -->
+<!-- analises.html atualizado com formulário RabbitMQ -->
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -57,6 +57,14 @@
             <li>Melhor experiência para o cliente com diagnósticos preditivos confiáveis</li>
         </ul>
     </div>
+
+    <!-- 🟢 FORMULÁRIO DE ENVIO PARA RABBITMQ -->
+    <form th:action="@{/analises/enviar}" method="post" class="mb-4 text-center">
+        <div class="d-flex justify-content-center gap-2">
+            <input type="text" name="idFoto" class="form-control" placeholder="ID da Foto" required style="max-width: 300px;">
+            <button type="submit" class="btn btn-success">📈 Gerar Nova Análise</button>
+        </div>
+    </form>
 
     <div class="text-center my-5">
         <h3 class="section-title" th:text="#{home.result.title}">📁 Resultados Recentes</h3>

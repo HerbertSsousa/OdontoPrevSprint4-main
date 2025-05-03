@@ -29,12 +29,15 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/css/**", "/img/**", "/usuarios/**", "/funcionarios/**", "/", "/login").permitAll()
+                        .requestMatchers(
+                                "/css/**", "/img/**", "/usuarios/**", "/funcionarios/**", "/", "/login",
+                                "/actuator/**" // <- Adicionado aqui
+                        ).permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .loginPage("/") // Sua página de login é /
-                        .usernameParameter("nome") // usa 'nome' como campo de login (CPF)
+                        .loginPage("/") // Página de login
+                        .usernameParameter("nome") // campo de login (CPF)
                         .passwordParameter("password")
                         .loginProcessingUrl("/login")
                         .defaultSuccessUrl("/analises", true)

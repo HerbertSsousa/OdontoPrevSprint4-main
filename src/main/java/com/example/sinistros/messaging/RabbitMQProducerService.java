@@ -14,7 +14,7 @@ public class RabbitMQProducerService {
     }
 
     public void enviarAnalise(String idFoto) {
-        rabbitTemplate.convertAndSend(RabbitMQConfig.EXCHANGE, RabbitMQConfig.ROUTING_KEY, idFoto);
+        rabbitTemplate.convertAndSend(RabbitMQConfig.EXCHANGE_NAME, RabbitMQConfig.ROUTING_KEY, idFoto);
         System.out.println("📤 Mensagem enviada com ID da foto: " + idFoto);
     }
 }

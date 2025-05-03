@@ -45,6 +45,10 @@ A aplicação segue a arquitetura `MVC` e utiliza:
 - `HATEOAS` para construção de APIs `RESTful` no nível 3 de Richardson.
 - `Lombok` para otimização de código.
 - `Procedures SQL` para manipulação de dados diretamente no banco.
+- `Spring Security` com autenticação baseada em perfis de acesso.
+- `RabbitMQ` para mensageria assíncrona entre componentes.
+- `Spring Boot Actuator` para monitoramento da aplicação.
+- Suporte à `internacionalização (i18n)` com mensagens externas em diferentes idiomas.
 
 ## Funcionalidades Implementadas
 
@@ -54,6 +58,10 @@ A aplicação segue a arquitetura `MVC` e utiliza:
 - Testes de API com `Postman`.
 - Integração com banco de dados `Oracle`.
 - Implementação de `HATEOAS` para navegação entre recursos.
+- Autenticação e controle de acesso com `Spring Security`.
+- Internacionalização (`i18n`) para suporte multilíngue.
+- Integração com `RabbitMQ` como mensageria (produtor e consumidor).
+- Monitoramento com endpoints do `Spring Boot Actuator`.
 
 ## Dificuldades Encontradas
 
@@ -61,6 +69,8 @@ A aplicação segue a arquitetura `MVC` e utiliza:
 - Ajustes nas entidades para melhoria da coesão e separação de responsabilidades.
 - Implementação de `procedures` no banco `Oracle`.
 - CRUD através do `Thymeleaf`.
+- Integração com `RabbitMQ` e gerenciamento de filas.
+- Configuração de autenticação com perfis usando `Spring Security`.
 
 ## Próximos Passos
 
@@ -78,6 +88,7 @@ A aplicação segue a arquitetura `MVC` e utiliza:
 - `JDK 17` ou superior
 - `Maven` instalado
 - Banco de dados `Oracle` configurado
+- `RabbitMQ` instalado e executando localmente na porta 5672
 
 ### Passos para Execução
 
@@ -105,6 +116,16 @@ A aplicação segue a arquitetura `MVC` e utiliza:
    mvn spring-boot:run
    ```
 6. Acesse a aplicação via navegador: [http://localhost:8081](http://localhost:8081)
+
+### Acessar Endpoints de Monitoramento (Actuator)
+
+O `Spring Boot Actuator` está configurado com base path `/actuator`. Após iniciar a aplicação, acesse:
+
+- **Saúde da aplicação**: [http://localhost:8081/actuator/health](http://localhost:8081/actuator/health)
+- **Informações da aplicação**: [http://localhost:8081/actuator/info](http://localhost:8081/actuator/info)
+- **Métricas gerais**: [http://localhost:8081/actuator/metrics](http://localhost:8081/actuator/metrics)
+
+> Obs.: Esses endpoints estão liberados na configuração do Spring Security para acesso público.
 
 ## Diagrama de Entidade-Relacionamento (DER)
 
@@ -154,7 +175,6 @@ Cada tabela é estruturada com integridade referencial e constraints de unicidad
 ## Link do Github
 
 [Repositório](https://github.com/HerbertSsousa/OdontoPrevSprint3)
-
 
 <h2>Diagramas</h2>
 <h3>Diagrama de Classes</h3>
